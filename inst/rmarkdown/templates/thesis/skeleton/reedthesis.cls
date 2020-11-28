@@ -363,11 +363,11 @@
 % End of CII add
 
 \usepackage{titlesec}
- \usepackage{lipsum}
- % Title with chapter number
+\usepackage{lipsum}
+% Title with chapter number
 \titleformat{\chapter}[hang]
   {\normalfont\bfseries\huge\raggedright}
-  {\thechapter }
+  {\thechapter}
   {15pt}
   {\Huge}
 % Alternative Title without chapter number
