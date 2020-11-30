@@ -45,7 +45,7 @@ acknowledgements: |
 sazetak: '`r if(knitr:::is_latex_output()) paste(readLines(here::here("prelims", "00-sazetak.Rmd")), collapse = "\n  ")`'
 kljucnerijeci: CFD, aksijalna turbina
 zahvala: |
-  Želim se zahvaliti ...
+  Želim se zahvaliti ... (baš me zanima kome)
 izjava: |
   Izjavljujem da sam ovaj rad radila samostalno koristeći znanja stečena tijekom studija i navedenu literaturu.
 zadatak: figure/zadatak.pdf
