@@ -32,6 +32,12 @@
 % Added by CII to produce nice looking code in BeginVerbatimEnvironment
 \RequirePackage{fancyvrb}
 
+\usepackage[croatian]{babel}
+\usepackage[left=3cm,right=3cm,top=3cm,bottom=3cm]{geometry}
+
+%\usepackage{adjustbox}
+\usepackage{tabularx}
+
 % Added by CII
 \usepackage{ifxetex,ifluatex}
 \usepackage{fixltx2e} % provides \textsubscript
@@ -104,16 +110,9 @@
 % This gives us rules below the headers
 \AtBeginDocument{%
   \fancyhf{}
-  \fancyhead[L,RO]{\thepage} % ZT \fancyhead[LE,RO]{\thepage}
-%  \fancyhead[RE]{\slshape \leftmark}
+  \fancyhead[RO]{\thepage} %ZT
 %  \fancyhead[LO]{\slshape \rightmark}
-%	The above makes your headers in all caps. If you would like different headers, choose one of the following options (be sure to remove the % symbol from both the right and left headers):
-	 \fancyhead[R]{\slshape \nouppercase \leftmark} % ZT This makes the headers on the RIGHT side pages be 
-%	 \fancyhead[RE]{\slshape \nouppercase \leftmark} % This makes the headers on the RIGHT side pages be italic and use lowercase With Capitals When Specified.
-	\fancyhead[LO]{\slshape \nouppercase \rightmark} % This does the same thing to the LEFT side pages
-%	or
-%	\fancyhead[RE]{\scshape \leftmark} % The RIGHT headers will be in small caps.
-%	\fancyhead[LO]{\scshape \rightmark} %  And so will the LEFT headers
+  \fancyhead[LO]{\slshape \leftmark}
   \pagestyle{fancy}
 
 % Psych majors: You do not need the following six lines, as it conflicts with apacite, so comment them out.
@@ -144,27 +143,27 @@
 
 % Stolen from book.cls PBC 5/12/05
 % Using this to actually show "Chapter 1" in TOC instead of "1"
-%\def\@chapter[#1]#2{\ifnum \c@secnumdepth >\m@ne
-%                       \if@mainmatter
-%                         \refstepcounter{chapter}%
-%                         \typeout{\@chapapp\space\thechapter.}%
-%                         \addcontentsline{toc}{chapter}%
-%                         {\@chapapp\space\thechapter:\space#1}%
-%                       \else
-%                         \addcontentsline{toc}{chapter}{#1}%
-%                       \fi
-%                    \else
-%                      \addcontentsline{toc}{chapter}{#1}%
-%                    \fi
-%                    \chaptermark{#1}%
-%                    \addtocontents{lof}{\protect\addvspace{10\p@}}%
-%                    \addtocontents{lot}{\protect\addvspace{10\p@}}%
-%                    \if@twocolumn
-%                      \@topnewpage[\@makechapterhead{#2}]%
-%                    \else
-%                      \@makechapterhead{#2}%
-%                      \@afterheading
-%                    \fi}
+\def\@chapter[#1]#2{\ifnum \c@secnumdepth >\m@ne
+                       \if@mainmatter
+                         \refstepcounter{chapter}%
+                         \typeout{\@chapapp\space\thechapter.}%
+                         \addcontentsline{toc}{chapter}%
+                         {\@chapapp\space\thechapter:\space#1}%
+                       \else
+                         \addcontentsline{toc}{chapter}{#1}%
+                       \fi
+                    \else
+                      \addcontentsline{toc}{chapter}{#1}%
+                    \fi
+                    \chaptermark{#1}%
+                    \addtocontents{lof}{\protect\addvspace{10\p@}}%
+                    \addtocontents{lot}{\protect\addvspace{10\p@}}%
+                    \if@twocolumn
+                      \@topnewpage[\@makechapterhead{#2}]%
+                    \else
+                      \@makechapterhead{#2}%
+                      \@afterheading
+                    \fi}
 
 \newcommand{\RTcleardoublepage}{
 	\clearpage\if@twoside \ifodd\c@page\else
@@ -175,13 +174,13 @@
 \renewcommand{\cleardoublepage}{\RTcleardoublepage}
 
 % adjust margins for binding  (changed 2007-04-24 tgp)
-\setlength{\oddsidemargin}{.5in}
-\setlength{\evensidemargin}{0in}
-\setlength{\textwidth}{6.0in}
-\setlength{\textheight}{9.0in}
-\setlength\topmargin{0in}
-\addtolength\topmargin{-\headheight}
-\addtolength\topmargin{-\headsep}
+%\setlength{\oddsidemargin}{.5in}
+%\setlength{\evensidemargin}{0in}
+%\setlength{\textwidth}{6.0in}
+%\setlength{\textheight}{9.0in}
+%\setlength\topmargin{0in}
+%\addtolength\topmargin{-\headheight}
+%\addtolength\topmargin{-\headsep}
 
 %\setlength{\oddsidemargin}{.6in}
 %\setlength{\evensidemargin}{0in}
@@ -285,53 +284,62 @@
 % as requested by the library, BTS 2005
 
 \renewcommand{\maketitle}{%
-  {\pagestyle{empty}
+  \thispagestyle{empty}
   \fontsize{12}{14}\selectfont
+  
   \begin{titlepage}
   \newpage
-  \let\footnotesize\small
-  \let\footnoterule\relax
-  \let \footnote \thanks
+  
+%  \let\footnotesize\small
+%  \let\footnoterule\relax
+%  \let \footnote \thanks
 
-  \baselineskip = 1.4\baselineskip
-  \setbox0=\hbox{of the Requirements for the Degree}
+%  \baselineskip = 1.4\baselineskip
+%  \setbox0=\hbox{of the Requirements for the Degree}
 
   \begin{center}
-    \setcounter{page}{1}
-%    \null\vfil
     {\fontsize{12}{14}\selectfont \@institution}\\
     {\fontsize{12}{14}\selectfont \@division}\\
-    \vfil
-    {\fontsize{12}{14}\selectfont \@title}\\
-    \vfil
-%    \centerline{\hbox to \wd0 {\hbox{}\hrulefill\hbox{}}}
-%    \vfil
-%    A Thesis \\
-%    Presented to \\
-%    \@thedivisionof \ \@division \\
-%    \@institution
-    \vfil
-%    \centerline{\hbox to \wd0 {\hbox{}\hrulefill\hbox{}}}
-    \vfil
-%    In Partial Fulfillment \\
-%    of the Requirements for the Degree \\
-%    \@degree
-    \vfil
-%    \centerline{\hbox to \wd0 {\hbox{}\hrulefill\hbox{}}}
-    \bigskip
-    \centerline{}
-    \bigskip
-    {\fontsize{12}{14}\selectfont \lineskip .75em
-    \begin{tabular}[t]{c}%
-      \@author
-    \end{tabular}\par}
-    \vskip 1.5em
-    {\fontsize{12}{14}\selectfont \@date \par}
+    \vfill
+    {\fontsize{20}{28}\selectfont DIPLOMSKI RAD}\\
+%    {\fontsize{12}{14}\selectfont \@title}\\
+    \vfill
+    \begin{flushright}
+    {\fontsize{12}{14}\selectfont \@author}\\
+    \end{flushright}
+    \vfill
+    {\fontsize{12}{14}\selectfont Zagreb, \@date \par}
   \end{center}\par
+  
   \end{titlepage}
 
-%% Approved for the division page
+%% Second page
+
   \cleardoublepage
+  \thispagestyle{empty}
+  \begin{center}
+    {\fontsize{12}{14}\selectfont \@institution}\\
+    {\fontsize{12}{14}\selectfont \@division}\\
+    \vfill
+    {\fontsize{20}{30}\selectfont DIPLOMSKI RAD}\\
+    \vspace{12pt}
+    {\fontsize{12}{14}\selectfont \@title}\\
+    \vfill
+    \begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}X >{\raggedleft\arraybackslash}X}
+    {\fontsize{12}{14}\selectfont Mentor:} & {\fontsize{12}{14}\selectfont Student:}\\ 
+    {\fontsize{12}{14}\selectfont prof.dr.sc.~\@advisor} & {\fontsize{12}{14}\selectfont\@author} \\
+    \end{tabularx}%
+%    {\fontsize{12}{14}\selectfont \@author}\\
+    \vfill
+%    {\fontsize{12}{14}\selectfont \@advisor}\\
+    {\fontsize{12}{14}\selectfont Zagreb, \@date \par}
+  \end{center}\par
+  \cleardoublepage
+
+  
+
+%% Approved for the division page
+%  \cleardoublepage
 %  {\fontsize{12}{14}
 %  \setbox0=\hbox{Approved for the \@approvedforthe}
 %  \thispagestyle{empty}
@@ -345,8 +353,8 @@
 %  \centerline{\makebox[\wd0][c]{\@advisor}
 %	\if@altadvisor \makebox[.5in]{} \makebox[\wd0][c]{\@altadvisor} \fi}
 %  \par\vfil\null}
-  \cleardoublepage
-  }
+%  \cleardoublepage
+%  }
 }
 
 % From JSS
@@ -361,15 +369,3 @@
 \newcommand{\Dedication}[1]{\def\@Dedication{#1}}
 \newcommand{\Preface}[1]{\def\@Preface{#1}}
 % End of CII add
-
-\usepackage{titlesec}
-\usepackage{lipsum}
-% Title with chapter number
-\titleformat{\chapter}[hang]
-  {\normalfont\bfseries\huge\raggedright}
-  {\thechapter}
-  {15pt}
-  {\Huge}
-% Alternative Title without chapter number
-%\titleformat{\chapter}[display]
-%  {\normalfont\bfseries}{}{0pt}{\Huge}

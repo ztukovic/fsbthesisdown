@@ -1,0 +1,3 @@
+Prvi paragraf sazetka.\par
+
+Ovdje počinje drugi paragraf sažetka.

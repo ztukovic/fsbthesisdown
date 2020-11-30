@@ -1,14 +1,15 @@
 ---
-title: 'Numerička analiza strujanja ...'
-author: 'Željko Tuković'
-date: '01.12.2020'
-institution: 'Svaučilište u Zagrebu'
-division: 'Fakultet strojarstva i brodogradnje'
-advisor: 'Advisor F. Name'
+title: 'TURBINA ZA ISKORIŠTAVANJE ENERGIJE UZGONSKIH SILA U DIMNJAKU TERMOELEKTRANE'
+author: 'Anja Horvat'
+date: '2021.'
+month: 'ožujak'
+institution: 'SVEUČILIŠTE U ZAGREBU'
+division: 'FAKULTET STROJARSTVA I BRODOGRADNJE'
+advisor: 'Željko Tuković'
 # If you have more two advisors, un-silence line 7
 #altadvisor: 'Your Other Advisor'
-department: 'Zavod za energetska postrojenja, energetiku i okoliš'
-degree: 'Bachelor of Arts'
+department: 'Zavod za ...'
+degree: 'mag. ing. mech.'
 knit: bookdown::render_book
 site: bookdown::bookdown_site
 
@@ -29,23 +30,29 @@ output:
 # (e.g., abstract, acknowledgements) below or use code similar to line 25-26 
 # for the .RMD files. If you are NOT producing a PDF, delete or silence
 # lines 25-39 in this YAML header.
-abstract: 
-#'`r if(knitr:::is_latex_output()) paste(readLines(here::here("prelims", "00-abstract.Rmd")), collapse = "\n  ")`'
+abstract: '`r if(knitr:::is_latex_output()) paste(readLines(here::here("prelims", "00-abstract.Rmd")), collapse = "\n  ")`'
+keywords: CFD, axial turbine
 # If you'd rather include the preliminary content in files instead of inline
 # like below, use a command like that for the abstract above.  Note that a tab 
 # is needed on the line after the `|`.
-#acknowledgements: |
-#  I want to thank a few people.
+acknowledgements: |
+  I want to thank a few people.
 #dedication: |
 #  You can have a dedication here if you wish. 
 #preface: |
 #  This is an example of a thesis setup to use the reed thesis document class 
 #  (for LaTeX) and the R bookdown package, in general.
-  
+sazetak: '`r if(knitr:::is_latex_output()) paste(readLines(here::here("prelims", "00-sazetak.Rmd")), collapse = "\n  ")`'
+kljucnerijeci: CFD, aksijalna turbina
+zahvala: |
+  Želim se zahvaliti ...
+izjava: |
+  Izjavljujem da sam ovaj rad radila samostalno koristeći znanja stečena tijekom studija i navedenu literaturu.
+zadatak: figure/zadatak.pdf
 # Specify the location of the bibliography below
 bibliography: bib/thesis.bib
 # Download your specific csl file and refer to it in the line below.
-csl: csl/apa.csl
+csl: csl/transactions-of-the-materials-research-society-of-japan.csl
 lot: true
 lof: true
 ---
@@ -90,7 +97,34 @@ if (!require(thesisdown)) {
     )
   }
 }
+if (!require(dplyr)) {
+  if (params$`Install needed packages for {thesisdown}`) {
+    install.packages("dplyr", repos = "https://cran.rstudio.com")
+  } else {
+    stop(
+      paste(
+        'You need to run install.packages("dplyr")',
+        "first in the Console."
+      )
+    )
+  }
+}
+if (!require(ggplot2)) {
+  if (params$`Install needed packages for {thesisdown}`) {
+    install.packages("ggplot2", repos = "https://cran.rstudio.com")
+  } else {
+    stop(
+      paste(
+        'You need to run install.packages("ggplot2")',
+        "first in the Console."
+      )
+    )
+  }
+}
 library(thesisdown)
+library(dplyr)
+library(ggplot2)
+library(knitr)
 # Set how wide the R output will go
 options(width = 70)
 ```
@@ -100,4 +134,8 @@ The acknowledgements, preface, dedication, and abstract are added into the PDF
 version automatically by inputting them in the YAML at the top of this file.
 Alternatively, you can put that content in files like 00--prelim.Rmd and
 00-abstract.Rmd like done below.
+-->
+
+<!-- The {.unnumbered} option here means that the introduction will be 
+"Chapter 0." You can also use {-} for no numbers on chapters.
 -->

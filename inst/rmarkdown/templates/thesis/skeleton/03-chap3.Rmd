@@ -1,76 +1,3 @@
-```{r include_packages_2, include = FALSE}
-# This chunk ensures that the thesisdown package is
-# installed and loaded. This thesisdown package includes
-# the template files for the thesis and also two functions
-# used for labeling and referencing
-if (!require(remotes)) {
-  if (params$`Install needed packages for {thesisdown}`) {
-    install.packages("remotes", repos = "https://cran.rstudio.com")
-  } else {
-    stop(
-      paste(
-        'You need to run install.packages("remotes")',
-        "first in the Console."
-      )
-    )
-  }
-}
-if (!require(dplyr)) {
-  if (params$`Install needed packages for {thesisdown}`) {
-    install.packages("dplyr", repos = "https://cran.rstudio.com")
-  } else {
-    stop(
-      paste(
-        'You need to run install.packages("dplyr")',
-        "first in the Console."
-      )
-    )
-  }
-}
-if (!require(ggplot2)) {
-  if (params$`Install needed packages for {thesisdown}`) {
-    install.packages("ggplot2", repos = "https://cran.rstudio.com")
-  } else {
-    stop(
-      paste(
-        'You need to run install.packages("ggplot2")',
-        "first in the Console."
-      )
-    )
-  }
-}
-if (!require(bookdown)) {
-  if (params$`Install needed packages for {thesisdown}`) {
-    install.packages("bookdown", repos = "https://cran.rstudio.com")
-  } else {
-    stop(
-      paste(
-        'You need to run install.packages("bookdown")',
-        "first in the Console."
-      )
-    )
-  }
-}
-if (!require(thesisdown)) {
-  if (params$`Install needed packages for {thesisdown}`) {
-    remotes::install_github("ismayc/thesisdown")
-  } else {
-    stop(
-      paste(
-        "You need to run",
-        'remotes::install_github("ismayc/thesisdown")',
-        "first in the Console."
-      )
-    )
-  }
-}
-library(thesisdown)
-library(dplyr)
-library(ggplot2)
-library(knitr)
-flights <- read.csv("data/flights.csv", stringsAsFactors = FALSE)
-```
-
 
 # Tables, Graphics, References, and Labels {#ref-labels}
 
@@ -93,7 +20,7 @@ In addition to the tables that can be automatically generated from a data frame 
 ------------------------- ----------------------------------------- --------------
 Table: (\#tab:inher) Correlation of Inheritance Factors for Parents and Child 
 
-We can also create a link to the table by doing the following: Table \@ref(tab:inher).  If you go back to [Loading and exploring data] and look at the `kable` table, we can create a reference to this max delays table too: Table \@ref(tab:maxdelays). The addition of the `(\#tab:inher)` option to the end of the table caption allows us to then make a reference to Table `\@ref(tab:label)`. Note that this reference could appear anywhere throughout the document after the table has appeared.  
+We can also create a link to the table by doing the following: Table \@ref(tab:inher). The addition of the `(\#tab:inher)` option to the end of the table caption allows us to then make a reference to Table `\@ref(tab:label)`. Note that this reference could appear anywhere throughout the document after the table has appeared.  
 
 <!-- We will next explore ways to create this label-ref link using figures. -->
 
@@ -126,17 +53,6 @@ Here is a reference to the Reed logo: Figure \@ref(fig:reedlogo).  Note the use 
 
 <!-- starts a new page and stops trying to place floats such as tables and figures -->
 
-Below we will investigate how to save the output of an **R** plot and label it in a way similar to that done above.  Recall the `flights` dataset from Chapter \@ref(rmd-basics).  (Note that we've shown a different way to reference a section or chapter here.)  We will next explore a bar graph with the mean flight departure delays by airline from Portland for 2014.
-
-```{r delaysboxplot, warnings=FALSE, messages=FALSE, fig.cap="Mean Delays by Airline", fig.width=6}
-mean_delay_by_carrier <- flights %>%
-  group_by(carrier) %>%
-  summarize(mean_dep_delay = mean(dep_delay))
-ggplot(mean_delay_by_carrier, aes(x = carrier, y = mean_dep_delay)) +
-  geom_bar(position = "identity", stat = "identity", fill = "red")
-```
-
-Here is a reference to this image: Figure \@ref(fig:delaysboxplot).
 
 A table linking these carrier codes to airline names is available at <https://github.com/ismayc/pnwflights14/blob/master/data/airlines.csv>.
 

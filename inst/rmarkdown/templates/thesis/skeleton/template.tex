@@ -24,7 +24,7 @@
 %% Preamble
 %%
 % \documentclass{<something>} must begin each LaTeX document
-\documentclass[12pt,oneside]{reedthesis}
+\documentclass[12pt,oneside,a4paper]{reedthesis}
 % Packages are extensions to the basic LaTeX functions. Whatever you
 % want to typeset, there is probably a package out there for it.
 % Chemistry (chemtex), screenplays, you name it.
@@ -44,7 +44,11 @@
 % End of CII addition
 \usepackage{rotating}
 
-\usepackage[croatian]{babel}
+%\usepackage[croatian]{babel}
+%\usepackage[left=3cm,right=3cm,top=3cm,bottom=3cm]{geometry}
+\usepackage[pages=some]{background}
+
+
 
 % Next line commented out by CII
 %%% \usepackage{natbib}
@@ -54,7 +58,6 @@
 %\usepackage{biblatex-chicago}
 %\bibliography{thesis}
 
-\usepackage[left=3cm,right=3cm,top=3cm,bottom=3cm]{geometry}
 
 % Added by CII (Thanks, Hadley!)
 % Use ref for internal links
@@ -165,6 +168,17 @@ $endfor$
 %%
 %
 
+$if(zadatak)$
+\backgroundsetup{
+scale=1,
+color=black,
+opacity=1,
+angle=0,
+contents={
+  \includegraphics[width=\paperwidth,height=\paperheight]{$zadatak$}
+}}
+$endif$
+
 \begin{document}
 
 % Everything below added by CII
@@ -175,17 +189,43 @@ $endif$
 \frontmatter % this stuff will be roman-numbered
 \pagestyle{empty} % this removes page numbers from the frontmatter
 
-$if(acknowledgements)$
-  \begin{acknowledgements}
-    $acknowledgements$
-  \end{acknowledgements}
+%$if(acknowledgements)$
+%  \begin{acknowledgements}
+%    $acknowledgements$
+%  \end{acknowledgements}
+%$endif$
+
+$if(zahvala)$
+\noindent $zahvala$
 $endif$
 
-$if(preface)$
-  \begin{preface}
-    $preface$
-  \end{preface}
+$if(izjava)$
+\newpage
+\noindent {\bf Izjava}\\
+\\
+\noindent $izjava$\\
+\\
+
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}X >{\raggedleft\arraybackslash}X}
+Zagreb, $month$ $date$ & $author$
+\end{tabularx}%
+
 $endif$
+
+$if(zadatak)$
+\newpage
+\BgThispage
+\null
+\clearpage
+$endif$
+
+%$if(preface)$
+%  \begin{preface}
+%    $preface$
+%  \end{preface}
+%$endif$
+
+%\addcontentsline{toc}{chapter}{Preface}
 
 $if(toc)$
   \hypersetup{linkcolor=$if(toccolor)$$toccolor$$else$black$endif$}
@@ -201,23 +241,34 @@ $if(lof)$
   \listoffigures
 $endif$
 
-%$if(abstract)$
-%  \begin{abstract}
-%    $abstract$
-%  \end{abstract}
-%$endif$
-
-$if(dedication)$
-  \begin{dedication}
-    $dedication$
-  \end{dedication}
+$if(sazetak)$
+\chapter*{Sažetak}
+$sazetak$\\
+\\
+\noindent{\bf Ključne riječi: } $kljucnerijeci$
+\addcontentsline{toc}{chapter}{Sažetak}
 $endif$
+
+
+$if(abstract)$
+\chapter*{Summary}
+$abstract$\\
+\\
+\noindent{\bf Keywords: } $keywords$
+\addcontentsline{toc}{chapter}{Summary}
+$endif$
+
+
+%$if(dedication)$
+%  \begin{dedication}
+%    $dedication$
+%  \end{dedication}
+%$endif$
 
 \mainmatter % here the regular arabic numbering starts
 \pagestyle{fancyplain} % turns page numbering back on
 
 $body$
-
 
 % Index?
 
